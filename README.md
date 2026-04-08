@@ -6,19 +6,7 @@ Point Maximizer is a native iOS app that detects where you're shopping in real t
 
 ---
 
-## Demo
-
-<!-- ------------------------------------------------------------------ -->
-<!-- TO ADD YOUR VIDEO:                                                   -->
-<!--   1. Record a screen recording on your iPhone (Control Center →      -->
-<!--      Screen Recording), or use Xcode → Window → Devices and          -->
-<!--      Simulators to mirror + record.                                  -->
-<!--   2. Upload the .mp4 to this repo under assets/demo.mp4, OR upload  -->
-<!--      it to YouTube/Vimeo and paste the link below.                  -->
-<!--   3. Replace the lines below with one of:                           -->
-<!--      YouTube:  [![Demo](https://img.youtube.com/vi/YOUR_ID/0.jpg)](https://youtu.be/YOUR_ID) -->
-<!--      Local:    https://github.com/jamieyoun/price-maximizer/assets/YOUR_ASSET_ID/demo.mp4   -->
-<!-- ------------------------------------------------------------------ -->
+## Demo Video
 
 <video src="https://github.com/user-attachments/assets/c5cc3f5a-b9ed-441d-8b92-43cf0d6e2912" controls width="100%"></video>
 
