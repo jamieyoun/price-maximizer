@@ -29,76 +29,37 @@ Point Maximizer is a native iOS app that detects where you're shopping in real t
 <table>
   <tr>
     <td align="center">
-      <img src="assets/screenshots/01-onboarding.png" width="220" alt="Onboarding" /><br/>
+      <img src="assets/screenshots/01-onboarding.png" width="200" alt="Onboarding" /><br/>
       <sub><b>Onboarding</b></sub>
     </td>
     <td align="center">
-      <img src="assets/screenshots/02-card-selector.png" width="220" alt="Card Selector" /><br/>
-      <sub><b>Select Your Cards</b></sub>
+      <img src="assets/screenshots/02-home-with-cards.png" width="200" alt="Home Screen" /><br/>
+      <sub><b>Your Wallet + Popular Cards</b></sub>
     </td>
     <td align="center">
-      <img src="assets/screenshots/03-card-list.png" width="220" alt="Card List" /><br/>
-      <sub><b>Your Wallet</b></sub>
+      <img src="assets/screenshots/03-search.png" width="200" alt="Card Search" /><br/>
+      <sub><b>Search & Add Cards</b></sub>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="assets/screenshots/04-recommendation.png" width="220" alt="Recommendation Sheet" /><br/>
+      <img src="assets/screenshots/04-quick-add.png" width="200" alt="Quick Add" /><br/>
+      <sub><b>Quick Add Sheet</b></sub>
+    </td>
+    <td align="center">
+      <img src="assets/screenshots/05-recommendation.png" width="200" alt="Recommendation" /><br/>
       <sub><b>Best Card at Checkout</b></sub>
     </td>
     <td align="center">
-      <img src="assets/screenshots/05-lock-screen-widget.png" width="220" alt="Lock Screen Widget" /><br/>
+      <img src="assets/screenshots/06-lock-screen-widget.png" width="200" alt="Lock Screen Widget" /><br/>
       <sub><b>Lock Screen Widget</b></sub>
     </td>
     <td align="center">
-      <img src="assets/screenshots/06-add-card-search.png" width="220" alt="Card Search" /><br/>
-      <sub><b>Search & Add Cards</b></sub>
+      <img src="assets/screenshots/07-home-screen-widget.png" width="200" alt="Home Screen Widget" /><br/>
+      <sub><b>Home Screen Widget</b></sub>
     </td>
   </tr>
 </table>
-
-<!--
-HOW TO ADD SCREENSHOTS
-======================
-1. Run the app on your iPhone or in the iOS Simulator (iPhone 15 Pro recommended).
-2. Take each screenshot listed below. On device: press Side + Volume Up.
-   In Simulator: Cmd+S saves directly to your Desktop.
-3. Create the folder:  mkdir -p /path/to/repo/assets/screenshots
-4. Name and place each file exactly as referenced above, then run:
-     git add assets/screenshots/
-     git commit -m "Add app screenshots"
-     git push
-
-SHOT LIST (6 screenshots — ~10 minutes total)
----------------------------------------------
-01-onboarding.png
-   → Launch the app with no cards added. Capture the 3-step "How it works"
-     onboarding screen with the "Select My Cards" black button at the bottom.
-
-02-card-selector.png
-   → Tap "Select My Cards". Capture the grouped issuer list (Chase, Amex, etc.)
-     with one or two cards already checked (blue checkmark) and a last-4 field
-     expanded showing the animated text field.
-
-03-card-list.png
-   → After adding 3–4 cards, capture the main "Your Cards" list view. Ideally
-     have a location-aware category badge visible on one row (e.g. "Grocery").
-
-04-recommendation.png
-   → Trigger the tap-to-check flow (tap the lock screen widget or simulate via
-     the deep link pointmaximizer://open). Capture the full recommendation sheet
-     showing the card graphic, the large multiplier number, and the runner-up row.
-
-05-lock-screen-widget.png
-   → Show the iPhone lock screen with the Point Maximizer circular widget visible
-     below the clock. A rectangular widget alongside it makes a great second option.
-     Capture via Screenshots or use Simulator → File → Screenshot.
-
-06-add-card-search.png
-   → Open Add Card, type "sapphire" in the search field. Capture the live search
-     results list showing Chase Sapphire Preferred and Chase Sapphire Reserve with
-     their mini card chips and reward summaries.
--->
 
 ---
 

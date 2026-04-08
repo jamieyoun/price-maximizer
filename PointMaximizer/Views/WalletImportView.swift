@@ -10,13 +10,33 @@ import SwiftUI
 struct WalletImportView: View {
     @Environment(\.dismiss) private var dismiss
 
-    // Track selection state: presetName → last4 (nil = not selected)
     @State private var selections: [String: String] = [:]
     @State private var focusedCard: String? = nil
+    @State private var searchText = ""
 
     private var selectedCount: Int { selections.values.filter { !$0.isEmpty }.count }
+    private var isSearching: Bool { !searchText.isEmpty }
 
-    // Group presets by issuer prefix
+    private let popularNames = [
+        "Chase Sapphire Preferred",
+        "Chase Freedom Unlimited",
+        "Chase Sapphire Reserve",
+        "Amex Gold",
+        "Amex Platinum",
+        "Amex Blue Cash Preferred",
+        "Citi Double Cash",
+        "Capital One Venture",
+    ]
+    private var popularPresets: [PresetCard] {
+        popularNames.compactMap { n in CardPresets.all.first { $0.name == n } }
+    }
+
+    private var searchResults: [PresetCard] {
+        guard !searchText.isEmpty else { return [] }
+        let q = searchText.lowercased()
+        return CardPresets.all.filter { $0.name.lowercased().contains(q) }
+    }
+
     private var issuers: [(name: String, cards: [PresetCard])] {
         [
             ("Chase",           CardPresets.all.filter { $0.name.hasPrefix("Chase") }),
@@ -35,20 +55,54 @@ struct WalletImportView: View {
     var body: some View {
         NavigationStack {
             List {
-                explanationRow
+                // Search bar
+                Section {
+                    HStack(spacing: 8) {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundStyle(.secondary)
+                        TextField("Search 41 cards…", text: $searchText)
+                            .autocorrectionDisabled()
+                        if !searchText.isEmpty {
+                            Button {
+                                searchText = ""
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundStyle(.secondary)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                }
 
-                ForEach(issuers, id: \.name) { issuer in
-                    Section(issuer.name) {
-                        ForEach(issuer.cards, id: \.name) { preset in
-                            CardSelectorRow(
-                                preset:    preset,
-                                lastFour:  Binding(
-                                    get: { selections[preset.name] },
-                                    set: { selections[preset.name] = $0 }
-                                ),
-                                isFocused: focusedCard == preset.name,
-                                onTap: { handleTap(preset.name) }
-                            )
+                if isSearching {
+                    // MARK: Search results
+                    if searchResults.isEmpty {
+                        Section {
+                            Text("No cards match \"\(searchText)\"")
+                                .foregroundStyle(.secondary)
+                                .font(.subheadline)
+                        }
+                    } else {
+                        Section("Results") {
+                            ForEach(searchResults, id: \.name) { preset in
+                                selectorRow(preset)
+                            }
+                        }
+                    }
+                } else {
+                    // MARK: Popular picks
+                    Section("Most Popular") {
+                        ForEach(popularPresets, id: \.name) { preset in
+                            selectorRow(preset)
+                        }
+                    }
+
+                    // MARK: All cards by issuer
+                    ForEach(issuers, id: \.name) { issuer in
+                        Section(issuer.name) {
+                            ForEach(issuer.cards, id: \.name) { preset in
+                                selectorRow(preset)
+                            }
                         }
                     }
                 }
@@ -56,6 +110,7 @@ struct WalletImportView: View {
             .listStyle(.insetGrouped)
             .navigationTitle("Select Your Cards")
             .navigationBarTitleDisplayMode(.inline)
+            .animation(.spring(response: 0.3), value: isSearching)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
@@ -69,23 +124,19 @@ struct WalletImportView: View {
         }
     }
 
-    // MARK: - Explanation banner
+    // MARK: - Shared row builder
 
-    private var explanationRow: some View {
-        HStack(alignment: .top, spacing: 10) {
-            Image(systemName: "info.circle.fill")
-                .foregroundStyle(.blue)
-                .padding(.top, 2)
-            VStack(alignment: .leading, spacing: 3) {
-                Text("Select the cards you carry")
-                    .font(.subheadline.weight(.semibold))
-                Text("Tap a card to select it, then enter the last 4 digits. Reward rates are filled in automatically.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-        }
-        .padding(.vertical, 4)
-        .listRowBackground(Color(.systemGray6))
+    @ViewBuilder
+    private func selectorRow(_ preset: PresetCard) -> some View {
+        CardSelectorRow(
+            preset:   preset,
+            lastFour: Binding(
+                get: { selections[preset.name] },
+                set: { selections[preset.name] = $0 }
+            ),
+            isFocused: focusedCard == preset.name,
+            onTap: { handleTap(preset.name) }
+        )
     }
 
     // MARK: - Actions

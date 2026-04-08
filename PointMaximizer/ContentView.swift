@@ -8,11 +8,48 @@ struct ContentView: View {
     @State private var showAddCard = false
     @State private var showWalletImport = false
 
+    // Search
+    @State private var searchText = ""
+
+    // Quick-add from popular strip
+    @State private var quickAddPreset: PresetCard? = nil
+
     // Tap-to-check sheet state
     @State private var showingCheckSheet = false
     @State private var resolvedData: WidgetData? = nil
 
     private var context: MerchantContext { locationManager.currentContext }
+
+    // MARK: - Popular presets (top 8)
+    private let popularNames = [
+        "Chase Sapphire Preferred",
+        "Chase Freedom Unlimited",
+        "Chase Sapphire Reserve",
+        "Amex Gold",
+        "Amex Platinum",
+        "Amex Blue Cash Preferred",
+        "Citi Double Cash",
+        "Capital One Venture",
+    ]
+    private var popularPresets: [PresetCard] {
+        popularNames.compactMap { n in CardPresets.all.first { $0.name == n } }
+    }
+
+    // MARK: - Search filtering
+    private var filteredCards: [CreditCard] {
+        guard !searchText.isEmpty else { return cards }
+        let q = searchText.lowercased()
+        return cards.filter { $0.name.lowercased().contains(q) }
+    }
+    private var presetMatches: [PresetCard] {
+        guard !searchText.isEmpty else { return [] }
+        let q = searchText.lowercased()
+        let existingNames = Set(cards.map { $0.name })
+        return CardPresets.all.filter {
+            $0.name.lowercased().contains(q) && !existingNames.contains($0.name)
+        }
+    }
+    private var isSearching: Bool { !searchText.isEmpty }
 
     var body: some View {
         NavigationStack {
@@ -20,11 +57,21 @@ struct ContentView: View {
                 if cards.isEmpty {
                     onboardingSection
                 } else {
-                    howItWorksRow
-                    cardListSection
+                    if isSearching {
+                        searchResultsSections
+                    } else {
+                        howItWorksRow
+                        popularSection
+                        cardListSection
+                    }
                 }
             }
             .navigationTitle("Point Maximizer")
+            .searchable(
+                text: $searchText,
+                placement: .navigationBarDrawer(displayMode: .always),
+                prompt: "Search your cards or add new ones…"
+            )
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack(spacing: 16) {
@@ -43,7 +90,12 @@ struct ContentView: View {
             .sheet(isPresented: $showWalletImport, onDismiss: reloadCards) {
                 WalletImportView()
             }
-            // Checkout recommendation sheet — spinner → card result
+            .sheet(item: $quickAddPreset, onDismiss: reloadCards) { preset in
+                QuickAddSheet(preset: preset)
+                    .presentationDetents([.height(300)])
+                    .presentationDragIndicator(.visible)
+                    .presentationCornerRadius(24)
+            }
             .sheet(isPresented: $showingCheckSheet, onDismiss: { resolvedData = nil }) {
                 CardRecommendationSheet(resolvedData: $resolvedData)
                     .presentationDetents([.height(620)])
@@ -51,14 +103,127 @@ struct ContentView: View {
                     .presentationCornerRadius(28)
                     .animation(.spring(response: 0.4), value: resolvedData != nil)
             }
-            // Widget or notification deep link: pointmaximizer://open
-            .onOpenURL { url in
-                handleDeepLink(url)
-            }
+            .onOpenURL { url in handleDeepLink(url) }
             .onAppear {
                 reloadCards()
                 locationManager.requestPermission()
                 LiveActivityManager.shared.end()
+            }
+        }
+    }
+
+    // MARK: - Popular cards strip
+
+    private var popularSection: some View {
+        Section("Popular Cards") {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(popularPresets, id: \.name) { preset in
+                        let alreadyAdded = cards.contains { $0.name == preset.name }
+                        Button {
+                            if !alreadyAdded { quickAddPreset = preset }
+                        } label: {
+                            VStack(spacing: 5) {
+                                ZStack(alignment: .topTrailing) {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(
+                                            LinearGradient(
+                                                colors: [Color(hex: preset.colorHex) ?? .black,
+                                                         (Color(hex: preset.colorHex) ?? .black).opacity(0.7)],
+                                                startPoint: .topLeading,
+                                                endPoint: .bottomTrailing
+                                            )
+                                        )
+                                        .frame(width: 86, height: 54)
+                                        .overlay(
+                                            Image(systemName: preset.network.sfSymbol)
+                                                .foregroundStyle(.white.opacity(0.7))
+                                                .font(.system(size: 14))
+                                        )
+                                    if alreadyAdded {
+                                        Image(systemName: "checkmark.circle.fill")
+                                            .font(.system(size: 14))
+                                            .foregroundStyle(.white)
+                                            .padding(4)
+                                    }
+                                }
+                                Text(preset.name)
+                                    .font(.system(size: 9))
+                                    .multilineTextAlignment(.center)
+                                    .foregroundStyle(alreadyAdded ? .secondary : .primary)
+                                    .frame(width: 86)
+                                    .lineLimit(2)
+                            }
+                            .opacity(alreadyAdded ? 0.5 : 1)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .padding(.vertical, 8)
+                .padding(.horizontal, 2)
+            }
+        }
+    }
+
+    // MARK: - Search results
+
+    private var searchResultsSections: some View {
+        Group {
+            // Matching cards already in wallet
+            if !filteredCards.isEmpty {
+                Section("Your Cards") {
+                    ForEach(filteredCards) { card in
+                        NavigationLink(destination: CardDetailView(card: card, onSave: updateCard)) {
+                            CardRow(card: card, category: context.category)
+                        }
+                    }
+                }
+            }
+
+            // Presets not yet added
+            if !presetMatches.isEmpty {
+                Section("Add from Presets") {
+                    ForEach(presetMatches, id: \.name) { preset in
+                        Button { quickAddPreset = preset } label: {
+                            HStack(spacing: 14) {
+                                RoundedRectangle(cornerRadius: 6)
+                                    .fill(LinearGradient(
+                                        colors: [Color(hex: preset.colorHex) ?? .gray,
+                                                 (Color(hex: preset.colorHex) ?? .gray).opacity(0.7)],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    ))
+                                    .frame(width: 44, height: 28)
+                                    .overlay(
+                                        Text(preset.network.rawValue.prefix(4))
+                                            .font(.system(size: 7, weight: .bold))
+                                            .foregroundStyle(.white.opacity(0.85))
+                                    )
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(preset.name)
+                                        .font(.subheadline.weight(.semibold))
+                                        .foregroundStyle(.primary)
+                                    Text(topRewardSummary(preset))
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+                                Spacer()
+                                Image(systemName: "plus.circle")
+                                    .foregroundStyle(.blue)
+                            }
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+            }
+
+            if filteredCards.isEmpty && presetMatches.isEmpty {
+                Section {
+                    Text("No results for \"\(searchText)\"")
+                        .foregroundStyle(.secondary)
+                        .font(.subheadline)
+                }
             }
         }
     }
@@ -97,7 +262,6 @@ struct ContentView: View {
                     )
                 }
 
-                // Primary CTA — select from preset card list
                 Button(action: { showWalletImport = true }) {
                     Label("Select My Cards", systemImage: "rectangle.stack.fill")
                         .font(.headline)
@@ -123,7 +287,7 @@ struct ContentView: View {
         }
     }
 
-    // MARK: - "How it works" compact row (shown once cards exist)
+    // MARK: - "How it works" compact row
 
     private var howItWorksRow: some View {
         Section {
@@ -156,8 +320,22 @@ struct ContentView: View {
         }
     }
 
+    // MARK: - Helpers
+
+    private func topRewardSummary(_ preset: PresetCard) -> String {
+        preset.rewards
+            .filter { $0.value >= 2 }
+            .sorted { $0.value > $1.value }
+            .prefix(2)
+            .map { "\(formatMult($0.value))× \($0.key.rawValue)" }
+            .joined(separator: "  ·  ")
+    }
+
+    private func formatMult(_ v: Double) -> String {
+        v.truncatingRemainder(dividingBy: 1) == 0 ? String(Int(v)) : String(format: "%.1f", v)
+    }
+
     // MARK: - Deep link handler
-    // pointmaximizer://open  →  one-shot location check → recommendation sheet
 
     private func handleDeepLink(_ url: URL) {
         guard url.scheme == "pointmaximizer", url.host == "open" else { return }
@@ -167,16 +345,11 @@ struct ContentView: View {
         showingCheckSheet = true
 
         Task {
-            // 1. One-shot location fix (CLLocationManager.requestLocation)
             guard let location = await locationManager.requestCurrentLocation() else { return }
-
-            // 2. Merchant intelligence engine
             let context = await MerchantIntelligenceEngine.shared.analyze(
                 location: location,
                 at: Date()
             )
-
-            // 3. Build the recommendation
             await MainActor.run {
                 let snapshot = SharedDataManager.shared.buildWidgetData(
                     merchantName: context.merchantName,
@@ -187,8 +360,6 @@ struct ContentView: View {
                 )
                 SharedDataManager.shared.saveWidgetData(snapshot)
                 WidgetCenter.shared.reloadAllTimelines()
-
-                // Animate the sheet content in
                 withAnimation(.spring(response: 0.45, dampingFraction: 0.8)) {
                     resolvedData = snapshot
                 }
@@ -216,6 +387,106 @@ struct ContentView: View {
         }
         SharedDataManager.shared.saveCards(cards)
         WidgetCenter.shared.reloadAllTimelines()
+    }
+}
+
+// MARK: - Quick Add Sheet
+
+private struct QuickAddSheet: View {
+    let preset: PresetCard
+    @Environment(\.dismiss) private var dismiss
+    @State private var lastFour = ""
+    @FocusState private var focused: Bool
+
+    private var cardColor: Color { Color(hex: preset.colorHex) ?? .black }
+    private var canSave: Bool { lastFour.count == 4 }
+
+    var body: some View {
+        VStack(spacing: 0) {
+            // Card preview
+            ZStack(alignment: .bottomLeading) {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(LinearGradient(
+                        colors: [cardColor, cardColor.opacity(0.7)],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ))
+                    .frame(height: 100)
+                VStack(alignment: .leading, spacing: 2) {
+                    Spacer()
+                    Text(preset.name)
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(.white)
+                    Text("•••• •••• •••• \(lastFour.isEmpty ? "——" : lastFour)")
+                        .font(.system(.caption, design: .monospaced))
+                        .foregroundStyle(.white.opacity(0.75))
+                }
+                .padding(14)
+            }
+            .padding(.horizontal, 20)
+            .padding(.top, 20)
+
+            // Last 4 entry
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Last 4 digits")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 20)
+
+                TextField("e.g. 1234", text: $lastFour)
+                    .keyboardType(.numberPad)
+                    .font(.system(.title2, design: .monospaced).weight(.semibold))
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical, 12)
+                    .background(Color(.systemGray6))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .padding(.horizontal, 20)
+                    .focused($focused)
+                    .onChange(of: lastFour) { _, v in
+                        lastFour = String(v.filter(\.isNumber).prefix(4))
+                    }
+            }
+            .padding(.top, 20)
+
+            // Add button
+            Button {
+                saveCard()
+            } label: {
+                Text(canSave ? "Add Card" : "Enter Last 4 Digits")
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
+                    .background(canSave ? Color.black : Color(.systemGray4))
+                    .foregroundStyle(canSave ? Color.white : Color(.systemGray))
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+            }
+            .buttonStyle(.plain)
+            .disabled(!canSave)
+            .padding(.horizontal, 20)
+            .padding(.top, 16)
+            .animation(.spring(response: 0.3), value: canSave)
+        }
+        .onAppear { focused = true }
+    }
+
+    private func saveCard() {
+        var card = CreditCard(
+            name:           preset.name,
+            lastFour:       lastFour,
+            colorHex:       preset.colorHex,
+            network:        preset.network,
+            rewards:        Dictionary(uniqueKeysWithValues:
+                                preset.rewards.map { ($0.key.rawValue, $0.value) }),
+            rewardCurrency: preset.rewardCurrency
+        )
+        card.caps = Dictionary(uniqueKeysWithValues:
+            preset.caps.map { ($0.key.rawValue, $0.value) }
+        )
+        var existing = SharedDataManager.shared.loadCards()
+        existing.append(card)
+        SharedDataManager.shared.saveCards(existing)
+        WidgetCenter.shared.reloadAllTimelines()
+        dismiss()
     }
 }
 

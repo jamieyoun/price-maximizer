@@ -8,7 +8,8 @@ import Foundation
 // Annual caps are divided by 4 to produce quarterly equivalents.
 // Monthly caps (Citi Custom Cash) are multiplied by 3.
 
-struct PresetCard {
+struct PresetCard: Identifiable {
+    var id: String { name }
     let name: String
     let network: CardNetwork
     let colorHex: String
