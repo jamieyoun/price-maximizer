@@ -132,9 +132,3 @@ PointMaximizerWidget/
 3. Update the App Group identifier in both targets to match your team.
 4. Build and run on a device (location services require a real device for full functionality).
 5. Add your lock screen widget: **Lock Screen → Long Press → Customize → add Point Maximizer**.
-
----
-
-## License
-
-MIT
