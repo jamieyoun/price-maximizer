@@ -8,7 +8,7 @@ Point Maximizer is a native iOS app that detects where you're shopping in real t
 
 ## Demo Video
 
-<video src="https://github.com/user-attachments/assets/c5cc3f5a-b9ed-441d-8b92-43cf0d6e2912" controls width="100%"></video>
+<video src="https://github.com/user-attachments/assets/3fe75b9c-7c12-4973-b68b-55f3a0240c8a" controls width="100%"></video>
 
 ---
 
