@@ -20,7 +20,7 @@ Point Maximizer is a native iOS app that detects where you're shopping in real t
 <!--      Local:    https://github.com/jamieyoun/price-maximizer/assets/YOUR_ASSET_ID/demo.mp4   -->
 <!-- ------------------------------------------------------------------ -->
 
-<video src="assets/demo.mov" controls width="100%"></video>
+<video src="https://github.com/user-attachments/assets/e863f691-0c17-4bfb-a44f-589612531083" controls width="100%"></video>
 
 ---
 
