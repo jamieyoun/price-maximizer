@@ -26,40 +26,68 @@ Point Maximizer is a native iOS app that detects where you're shopping in real t
 
 ## Screenshots
 
+<!-- ── Hero ─────────────────────────────────────────────────────────── -->
+<div align="center">
+  <img src="assets/screenshots/05-recommendation.png" width="280" alt="Best card recommendation sheet" />
+  <br/>
+  <sub>The moment that matters — tap the widget, get the answer.</sub>
+</div>
+
+<br/>
+
+<!-- ── Feature rows ──────────────────────────────────────────────────── -->
 <table>
   <tr>
-    <td align="center">
-      <img src="assets/screenshots/01-onboarding.png" width="200" alt="Onboarding" /><br/>
-      <sub><b>Onboarding</b></sub>
+    <td width="45%" align="center">
+      <img src="assets/screenshots/01-onboarding.png" width="240" alt="Onboarding" />
     </td>
-    <td align="center">
-      <img src="assets/screenshots/02-home-with-cards.png" width="200" alt="Home Screen" /><br/>
-      <sub><b>Your Wallet + Popular Cards</b></sub>
-    </td>
-    <td align="center">
-      <img src="assets/screenshots/03-search.png" width="200" alt="Card Search" /><br/>
-      <sub><b>Search & Add Cards</b></sub>
+    <td width="55%" valign="middle" padding="20">
+      <h3>Up and running in minutes</h3>
+      <p>A clean 3-step onboarding explains exactly how the app works. One tap to import your cards — no manual data entry needed.</p>
     </td>
   </tr>
   <tr>
-    <td align="center">
-      <img src="assets/screenshots/04-quick-add.png" width="200" alt="Quick Add" /><br/>
-      <sub><b>Quick Add Sheet</b></sub>
+    <td width="55%" valign="middle" align="right">
+      <h3>Your whole wallet, organized</h3>
+      <p>Popular cards surface at the top for instant access. Your added cards sit below, each showing its best reward category in real time based on your location.</p>
     </td>
-    <td align="center">
-      <img src="assets/screenshots/05-recommendation.png" width="200" alt="Recommendation" /><br/>
-      <sub><b>Best Card at Checkout</b></sub>
+    <td width="45%" align="center">
+      <img src="assets/screenshots/02-home-with-cards.png" width="240" alt="Home screen with cards" />
     </td>
-    <td align="center">
-      <img src="assets/screenshots/06-lock-screen-widget.png" width="200" alt="Lock Screen Widget" /><br/>
-      <sub><b>Lock Screen Widget</b></sub>
+  </tr>
+  <tr>
+    <td width="45%" align="center">
+      <img src="assets/screenshots/03-search.png" width="240" alt="Card search" />
     </td>
-    <td align="center">
-      <img src="assets/screenshots/07-home-screen-widget.png" width="200" alt="Home Screen Widget" /><br/>
-      <sub><b>Home Screen Widget</b></sub>
+    <td width="55%" valign="middle">
+      <h3>Find any card instantly</h3>
+      <p>Search all 41 preset cards by name. Results show cards already in your wallet alongside presets you haven't added yet — tap the <code>+</code> to add either.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="55%" valign="middle" align="right">
+      <h3>Add a card in seconds</h3>
+      <p>Tap any card in the Popular strip or search results. A compact sheet slides up with a live card preview — just enter your last 4 digits and you're done.</p>
+    </td>
+    <td width="45%" align="center">
+      <img src="assets/screenshots/04-quick-add.png" width="240" alt="Quick add sheet" />
     </td>
   </tr>
 </table>
+
+<br/>
+
+<!-- ── Widget showcase ───────────────────────────────────────────────── -->
+<div align="center">
+  <h3>Always one tap away</h3>
+  <p>Available on the lock screen and home screen — wherever you need it at checkout.</p>
+  <br/>
+  <img src="assets/screenshots/06-lock-screen-widget.png" width="240" alt="Lock screen widget" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="assets/screenshots/07-home-screen-widget.png" width="240" alt="Home screen widget" />
+  <br/>
+  <sub>Lock screen &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Home screen</sub>
+</div>
 
 ---
 
