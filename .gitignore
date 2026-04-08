@@ -1,0 +1,36 @@
+# Xcode build products
+build/
+DerivedData/
+*.xccheckout
+*.xcscmblueprint
+*.moved-aside
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.xcuserstate
+*.xcuserdata/
+
+# Swift Package Manager
+.build/
+Packages/
+Package.resolved
+*.xcworkspace
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Xcode duplicates created during refactor (not part of canonical source)
+PointMaximizer 2/
+PointMaximizerWidget 2/
+PointMaximizer/PointMaximizerApp 2.swift
+
+# Credentials / secrets
+*.env
+secrets.*
+
+# CocoaPods
+Pods/

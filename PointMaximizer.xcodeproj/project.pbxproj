@@ -6,6 +6,21 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7D60DFF52F8571360046826D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D60DFF42F8571360046826D /* WidgetKit.framework */; };
+		7D60DFF72F8571360046826D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D60DFF62F8571360046826D /* SwiftUI.framework */; };
+		7D60E0022F8571370046826D /* PointMaximizerWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7D60DFF22F8571360046826D /* PointMaximizerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7D60E01B2F8571A30046826D /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D60E00C2F8571A30046826D /* Models.swift */; };
+		7D60E01C2F8571A30046826D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D60E0132F8571A30046826D /* ContentView.swift */; };
+		7D60E01D2F8571A30046826D /* CardRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D60E0112F8571A30046826D /* CardRow.swift */; };
+		7D60E0282F8571A30046826D /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D60E00C2F8571A30046826D /* Models.swift */; };
+		7D60E02B2F8571A30046826D /* WidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D60E0182F8571A30046826D /* WidgetViews.swift */; };
+		7D60E02C2F8571A30046826D /* SharedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D60E00D2F8571A30046826D /* SharedDataManager.swift */; };
+		7D60E0312F8571A30046826D /* PointMaximizerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D60E0172F8571A30046826D /* PointMaximizerWidget.swift */; };
+		7D60E0602F85AB660046826D /* ActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D60E05F2F85AB660046826D /* ActivityKit.framework */; platformFilter = ios; };
+		7D60E0612F85AB710046826D /* ActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D60E05F2F85AB660046826D /* ActivityKit.framework */; platformFilters = (ios, macos, ); };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		7D60DFD22F8570FE0046826D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -21,17 +36,82 @@
 			remoteGlobalIDString = 7D60DFC12F8570FC0046826D;
 			remoteInfo = PointMaximizer;
 		};
+		7D60E0002F8571370046826D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D60DFBA2F8570FC0046826D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7D60DFF12F8571360046826D;
+			remoteInfo = PointMaximizerWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7D60E0072F8571370046826D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7D60E0022F8571370046826D /* PointMaximizerWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7D60DFC22F8570FC0046826D /* PointMaximizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointMaximizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D60DFD12F8570FE0046826D /* PointMaximizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PointMaximizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D60DFDB2F8570FE0046826D /* PointMaximizerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PointMaximizerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D60DFF22F8571360046826D /* PointMaximizerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PointMaximizerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D60DFF42F8571360046826D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		7D60DFF62F8571360046826D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		7D60E0082F8571A30046826D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		7D60E0092F8571A30046826D /* MerchantIntelligenceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantIntelligenceEngine.swift; sourceTree = "<group>"; };
+		7D60E00A2F8571A30046826D /* WalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManager.swift; sourceTree = "<group>"; };
+		7D60E00C2F8571A30046826D /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		7D60E00D2F8571A30046826D /* SharedDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataManager.swift; sourceTree = "<group>"; };
+		7D60E00F2F8571A30046826D /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
+		7D60E0102F8571A30046826D /* CardDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailView.swift; sourceTree = "<group>"; };
+		7D60E0112F8571A30046826D /* CardRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRow.swift; sourceTree = "<group>"; };
+		7D60E0132F8571A30046826D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7D60E0142F8571A30046826D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D60E0152F8571A30046826D /* PointMaximizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointMaximizerApp.swift; sourceTree = "<group>"; };
+		7D60E0172F8571A30046826D /* PointMaximizerWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointMaximizerWidget.swift; sourceTree = "<group>"; };
+		7D60E0182F8571A30046826D /* WidgetViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViews.swift; sourceTree = "<group>"; };
+		7D60E05F2F85AB660046826D /* ActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActivityKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.4.sdk/System/Library/Frameworks/ActivityKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		7D60E0032F8571370046826D /* Exceptions for "PointMaximizerWidget" folder in "PointMaximizerWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+				PointMaximizerWidget.swift,
+				WidgetViews.swift,
+			);
+			target = 7D60DFF12F8571360046826D /* PointMaximizerWidgetExtension */;
+		};
+		7D60E0522F857B120046826D /* Exceptions for "PointMaximizer" folder in "PointMaximizer" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ContentView.swift,
+				Info.plist,
+				LiveActivity/PointMaximizerAttributes.swift,
+				"PointMaximizerApp 2.swift",
+				Shared/Models.swift,
+				Views/CardRow.swift,
+			);
+			target = 7D60DFC12F8570FC0046826D /* PointMaximizer */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		7D60DFC42F8570FC0046826D /* PointMaximizer */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				7D60E0522F857B120046826D /* Exceptions for "PointMaximizer" folder in "PointMaximizer" target */,
+			);
 			path = PointMaximizer;
 			sourceTree = "<group>";
 		};
@@ -45,6 +125,14 @@
 			path = PointMaximizerUITests;
 			sourceTree = "<group>";
 		};
+		7D60DFF82F8571360046826D /* PointMaximizerWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				7D60E0032F8571370046826D /* Exceptions for "PointMaximizerWidget" folder in "PointMaximizerWidgetExtension" target */,
+			);
+			path = PointMaximizerWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D60E0612F85AB710046826D /* ActivityKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +158,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7D60DFEF2F8571360046826D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D60E0602F85AB660046826D /* ActivityKit.framework in Frameworks */,
+				7D60DFF72F8571360046826D /* SwiftUI.framework in Frameworks */,
+				7D60DFF52F8571360046826D /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +177,8 @@
 				7D60DFC42F8570FC0046826D /* PointMaximizer */,
 				7D60DFD42F8570FE0046826D /* PointMaximizerTests */,
 				7D60DFDE2F8570FE0046826D /* PointMaximizerUITests */,
+				7D60DFF82F8571360046826D /* PointMaximizerWidget */,
+				7D60DFF32F8571360046826D /* Frameworks */,
 				7D60DFC32F8570FC0046826D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,8 +189,72 @@
 				7D60DFC22F8570FC0046826D /* PointMaximizer.app */,
 				7D60DFD12F8570FE0046826D /* PointMaximizerTests.xctest */,
 				7D60DFDB2F8570FE0046826D /* PointMaximizerUITests.xctest */,
+				7D60DFF22F8571360046826D /* PointMaximizerWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7D60DFF32F8571360046826D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D60E05F2F85AB660046826D /* ActivityKit.framework */,
+				7D60E0162F8571A30046826D /* PointMaximizer 2 */,
+				7D60E0192F8571A30046826D /* PointMaximizerWidget 2 */,
+				7D60DFF42F8571360046826D /* WidgetKit.framework */,
+				7D60DFF62F8571360046826D /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7D60E00B2F8571A30046826D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7D60E0082F8571A30046826D /* LocationManager.swift */,
+				7D60E0092F8571A30046826D /* MerchantIntelligenceEngine.swift */,
+				7D60E00A2F8571A30046826D /* WalletManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		7D60E00E2F8571A30046826D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				7D60E00C2F8571A30046826D /* Models.swift */,
+				7D60E00D2F8571A30046826D /* SharedDataManager.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		7D60E0122F8571A30046826D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7D60E00F2F8571A30046826D /* AddCardView.swift */,
+				7D60E0102F8571A30046826D /* CardDetailView.swift */,
+				7D60E0112F8571A30046826D /* CardRow.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7D60E0162F8571A30046826D /* PointMaximizer 2 */ = {
+			isa = PBXGroup;
+			children = (
+				7D60E00B2F8571A30046826D /* Managers */,
+				7D60E00E2F8571A30046826D /* Shared */,
+				7D60E0122F8571A30046826D /* Views */,
+				7D60E0132F8571A30046826D /* ContentView.swift */,
+				7D60E0142F8571A30046826D /* Info.plist */,
+				7D60E0152F8571A30046826D /* PointMaximizerApp.swift */,
+			);
+			path = "PointMaximizer 2";
+			sourceTree = "<group>";
+		};
+		7D60E0192F8571A30046826D /* PointMaximizerWidget 2 */ = {
+			isa = PBXGroup;
+			children = (
+				7D60E0172F8571A30046826D /* PointMaximizerWidget.swift */,
+				7D60E0182F8571A30046826D /* WidgetViews.swift */,
+			);
+			path = "PointMaximizerWidget 2";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,10 +267,12 @@
 				7D60DFBE2F8570FC0046826D /* Sources */,
 				7D60DFBF2F8570FC0046826D /* Frameworks */,
 				7D60DFC02F8570FC0046826D /* Resources */,
+				7D60E0072F8571370046826D /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7D60E0012F8571370046826D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				7D60DFC42F8570FC0046826D /* PointMaximizer */,
@@ -163,6 +330,28 @@
 			productReference = 7D60DFDB2F8570FE0046826D /* PointMaximizerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		7D60DFF12F8571360046826D /* PointMaximizerWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D60E0042F8571370046826D /* Build configuration list for PBXNativeTarget "PointMaximizerWidgetExtension" */;
+			buildPhases = (
+				7D60DFEE2F8571360046826D /* Sources */,
+				7D60DFEF2F8571360046826D /* Frameworks */,
+				7D60DFF02F8571360046826D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				7D60DFF82F8571360046826D /* PointMaximizerWidget */,
+			);
+			name = PointMaximizerWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = PointMaximizerWidgetExtension;
+			productReference = 7D60DFF22F8571360046826D /* PointMaximizerWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -184,6 +373,9 @@
 						CreatedOnToolsVersion = 26.4;
 						TestTargetID = 7D60DFC12F8570FC0046826D;
 					};
+					7D60DFF12F8571360046826D = {
+						CreatedOnToolsVersion = 26.4;
+					};
 				};
 			};
 			buildConfigurationList = 7D60DFBD2F8570FC0046826D /* Build configuration list for PBXProject "PointMaximizer" */;
@@ -203,6 +395,7 @@
 				7D60DFC12F8570FC0046826D /* PointMaximizer */,
 				7D60DFD02F8570FE0046826D /* PointMaximizerTests */,
 				7D60DFDA2F8570FE0046826D /* PointMaximizerUITests */,
+				7D60DFF12F8571360046826D /* PointMaximizerWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -229,6 +422,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7D60DFF02F8571360046826D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -236,6 +436,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D60E01B2F8571A30046826D /* Models.swift in Sources */,
+				7D60E01C2F8571A30046826D /* ContentView.swift in Sources */,
+				7D60E01D2F8571A30046826D /* CardRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +456,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7D60DFEE2F8571360046826D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D60E0282F8571A30046826D /* Models.swift in Sources */,
+				7D60E02B2F8571A30046826D /* WidgetViews.swift in Sources */,
+				7D60E02C2F8571A30046826D /* SharedDataManager.swift in Sources */,
+				7D60E0312F8571A30046826D /* PointMaximizerWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -265,6 +479,11 @@
 			isa = PBXTargetDependency;
 			target = 7D60DFC12F8570FC0046826D /* PointMaximizer */;
 			targetProxy = 7D60DFDC2F8570FE0046826D /* PBXContainerItemProxy */;
+		};
+		7D60E0012F8571370046826D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7D60DFF12F8571360046826D /* PointMaximizerWidgetExtension */;
+			targetProxy = 7D60E0002F8571370046826D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -390,10 +609,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGHLRWAK3P;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PointMaximizer/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -432,10 +653,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGHLRWAK3P;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PointMaximizer/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -565,6 +788,75 @@
 			};
 			name = Release;
 		};
+		7D60E0052F8571370046826D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGHLRWAK3P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PointMaximizerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PointMaximizerWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jyoun.PointMaximizer.PointMaximizerWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				XROS_DEPLOYMENT_TARGET = 26.4;
+			};
+			name = Debug;
+		};
+		7D60E0062F8571370046826D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGHLRWAK3P;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PointMaximizerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PointMaximizerWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = jyoun.PointMaximizer.PointMaximizerWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = xros;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 26.4;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -600,6 +892,15 @@
 			buildConfigurations = (
 				7D60DFEC2F8570FE0046826D /* Debug */,
 				7D60DFED2F8570FE0046826D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D60E0042F8571370046826D /* Build configuration list for PBXNativeTarget "PointMaximizerWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D60E0052F8571370046826D /* Debug */,
+				7D60E0062F8571370046826D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

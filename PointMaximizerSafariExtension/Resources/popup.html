@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="popup.css">
+    <title>Point Maximizer</title>
+</head>
+<body>
+    <!-- Loading state -->
+    <div id="loading" class="state">
+        <div class="spinner"></div>
+        <p>Checking rewards…</p>
+    </div>
+
+    <!-- No cards configured -->
+    <div id="no-cards" class="state hidden">
+        <div class="icon">💳</div>
+        <p class="title">No cards set up</p>
+        <p class="subtitle">Open Point Maximizer to add your cards.</p>
+        <button id="open-app-btn" class="btn-secondary">Open App</button>
+    </div>
+
+    <!-- Recommendation -->
+    <div id="recommendation" class="state hidden">
+        <div class="merchant-row">
+            <span id="merchant-icon" class="merchant-icon">🛍️</span>
+            <div>
+                <div id="merchant-name" class="merchant-name"></div>
+                <div id="category-label" class="category-label"></div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="card-section">
+            <div class="use-label">USE THIS CARD</div>
+            <div id="card-chip" class="card-chip">
+                <div id="card-name" class="card-name"></div>
+                <div id="card-digits" class="card-digits"></div>
+            </div>
+            <div id="reward-label" class="reward-label"></div>
+        </div>
+
+        <button id="wallet-btn" class="btn-primary">
+            <span>Open Wallet</span>
+            <span class="arrow">→</span>
+        </button>
+
+        <p class="face-id-hint">Then double-click side button to pay with Face ID</p>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
